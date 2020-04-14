@@ -37,8 +37,6 @@ public class StringAlgorithm {
                 }
             }
         }
-        System.out.println("1");
-        System.out.println("2");
         return -1;
     }
 
