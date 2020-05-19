@@ -7,10 +7,16 @@ public class SeqList<T> {
 
     public SeqList(int elementNum) {
         this.elementContainer = new Object[elementNum];
-        this.elementNum = 0;
+        this.elementNum = elementNum;
     }
     public SeqList() {
         this(1);
+    }
+    public SeqList(T[] elements) {
+        this(elements.length);
+        for (int i = 0; i < elements.length; i++) {
+            this.elementContainer[i] = elements[i];
+        }
     }
 
     public boolean isEmpty() {
