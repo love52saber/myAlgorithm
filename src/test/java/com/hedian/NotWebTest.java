@@ -17,4 +17,11 @@ public class NotWebTest {
         System.out.println(list);
         System.out.println(list2);
     }
+
+    @Test
+    public void test02() {
+        List<Integer> list = new ArrayList();
+        list.add(65, 1);
+        System.out.println(list);
+    }
 }
