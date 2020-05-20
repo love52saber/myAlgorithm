@@ -5,6 +5,7 @@ public class SeqList<T> {
     protected Object[] elementContainer;
     protected int elementNum;
 
+    //1.构造
     public SeqList(int elementNum) {
         this.elementContainer = new Object[elementNum];
         this.elementNum = elementNum;
@@ -27,6 +28,7 @@ public class SeqList<T> {
         return this.elementNum;
     }
 
+    //2.存取
     public T get(int i) {
         if (i >= 0 && i < this.elementNum) {
             return (T) this.elementContainer[i];
@@ -45,6 +47,7 @@ public class SeqList<T> {
         }
     }
 
+    //3.遍历
     @Override
     public String toString() {
         String str = this.getClass().getName() + "(";
@@ -54,7 +57,7 @@ public class SeqList<T> {
         return str + ")";
     }
 
-    //O(n)
+    //4.增
     public int insert(int index,T t) {
         if (index < 0 || index > this.elementContainer.length) {
             throw new IndexOutOfBoundsException();
@@ -81,6 +84,7 @@ public class SeqList<T> {
         return this.elementNum - 1;
     }
 
+    //5 删
     public int remove(int index) {
         if (index < 0 || index > this.elementNum) {
             throw new IndexOutOfBoundsException();
@@ -91,6 +95,16 @@ public class SeqList<T> {
         this.elementContainer[this.elementNum - 1] = null;
         this.elementNum -= 1;
         return index;
+    }
+
+    //6 查询 o(n)
+    public int search(T t) {
+        for (int i = 0; i < this.elementNum; i++) {
+            if (t.equals(this.elementContainer[i])) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 

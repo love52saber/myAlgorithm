@@ -3,6 +3,7 @@ package com.hedian;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class NotWebTest {
@@ -21,6 +22,13 @@ public class NotWebTest {
     @Test
     public void test02() {
         List<Integer> list = new ArrayList();
+        list.add(65, 1);
+        System.out.println(list);
+    }
+
+    @Test
+    public void test03() {
+        List<Integer> list = new LinkedList<>();
         list.add(65, 1);
         System.out.println(list);
     }
