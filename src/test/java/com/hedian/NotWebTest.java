@@ -32,4 +32,11 @@ public class NotWebTest {
         list.add(65, 1);
         System.out.println(list);
     }
+
+    @Test
+    public void test04() {
+        List<Integer> list = new LinkedList<>();
+        list.add(65, 1);
+        System.out.println(list);
+    }
 }

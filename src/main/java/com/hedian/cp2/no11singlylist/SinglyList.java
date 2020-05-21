@@ -3,10 +3,10 @@ package com.hedian.cp2.no11singlylist;
 public class SinglyList<T> {
 
     //头指针
-    private Node<T> head;
+    protected Node<T> head;
 
     //头指针
-    private int size;
+    protected int size;
 
     public SinglyList() {
         this.head = new Node<>();
@@ -65,15 +65,95 @@ public class SinglyList<T> {
 
     //增
     public int insert(int index, T t) {
+        if (index > this.size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
         Node<T> currentNode = this.head.next;
-        Node<T> frontNode = this.head.next;
+        Node<T> frontNode = this.head;
+        for (int i = 0; i < index; i++) {
+            frontNode = currentNode;
+            currentNode = currentNode.next;
+        }
+        Node<T> newNode = new Node<T>(currentNode,t);
+        frontNode.next = newNode;
+        size++;
+        return 0;
+    }
+
+    public int insert( T t) {
+        this.insert(this.size, t);
+        return 0;
+    }
+
+    //删
+    public T remove(int index) {
+        if (index > this.size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        Node<T> currentNode = this.head.next;
+        Node<T> frontNode = this.head;
         Node<T> backNode = this.head.next;
         for (int i = 0; i < index; i++) {
             frontNode = currentNode;
             currentNode = currentNode.next;
-            backNode = currentNode.next;
+            backNode = currentNode.next != null ? currentNode.next : null;
         }
-        return 0;
+        frontNode.next = backNode;
+        return currentNode.data;
+    }
+
+    //删
+    public T remove(T t) {
+        Node<T> frontNode = this.head;
+        Node<T> currentNode = this.head.next;
+        while (currentNode != null) {
+            if (currentNode.data.equals(t)) {
+                frontNode.next = currentNode.next;
+            }
+            size--;
+        }
+        return t;
+    }
+
+    //查
+    public int search(T t) {
+        Node<T> currentNode = head;
+        int index = 0;
+        while (currentNode != null) {
+            if (currentNode.data.equals(t)) {
+                return index;
+            }
+            currentNode = currentNode.next;
+            index++;
+        }
+        return -1;
+    }
+
+    //包含
+    public boolean contains(T t) {
+        Node<T> currentNode = head.next;
+        while (currentNode != null) {
+            if (currentNode.data.equals(t)) {
+                return true;
+            }
+            currentNode = currentNode.next;
+        }
+        return false;
+    }
+
+    //逆转
+    public SinglyList<T> reverse() {
+        Node<T> frontNode = null;
+        Node<T> currentNode = head.next;
+        Node<T> nextNode = null;
+        while (currentNode != null) {
+            nextNode = currentNode.next;
+            currentNode.next = frontNode;
+            frontNode = currentNode;
+            currentNode = nextNode;
+        }
+        head.next = frontNode;
+        return this;
     }
 
 }
