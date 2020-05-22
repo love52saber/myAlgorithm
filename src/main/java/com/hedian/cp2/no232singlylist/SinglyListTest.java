@@ -1,7 +1,5 @@
-package com.hedian.cp2.no11singlylist;
+package com.hedian.cp2.no232singlylist;
 
-import com.hedian.cp2.no01seqlist.Josephus;
-import com.hedian.cp2.no01seqlist.SeqList;
 import org.junit.Test;
 
 public class SinglyListTest {

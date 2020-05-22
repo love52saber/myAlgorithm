@@ -1,4 +1,4 @@
-package com.hedian.cp2.no11singlylist;
+package com.hedian.cp2.no232singlylist;
 
 public class SinglyList<T> {
 
@@ -14,7 +14,6 @@ public class SinglyList<T> {
     }
 
     public SinglyList(T[] values) {
-        super();
         Node<T> rearNode = this.head;
         for (T value : values) {
             Node<T> newNode = new Node<T>(null,value);
@@ -68,21 +67,17 @@ public class SinglyList<T> {
         if (index > this.size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
-        Node<T> currentNode = this.head.next;
         Node<T> frontNode = this.head;
         for (int i = 0; i < index; i++) {
-            frontNode = currentNode;
-            currentNode = currentNode.next;
+            frontNode = frontNode.next;
         }
-        Node<T> newNode = new Node<T>(currentNode,t);
-        frontNode.next = newNode;
+        frontNode.next = new Node<>(frontNode.next, t);
         size++;
-        return 0;
+        return index-1;
     }
 
     public int insert( T t) {
-        this.insert(this.size, t);
-        return 0;
+        return this.insert(this.size, t);
     }
 
     //删

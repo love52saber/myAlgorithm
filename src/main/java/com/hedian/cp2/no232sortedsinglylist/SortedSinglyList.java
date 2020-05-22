@@ -1,7 +1,7 @@
-package com.hedian.cp2.no12sortedsinglylist;
+package com.hedian.cp2.no232sortedsinglylist;
 
-import com.hedian.cp2.no11singlylist.Node;
-import com.hedian.cp2.no11singlylist.SinglyList;
+import com.hedian.cp2.no232singlylist.Node;
+import com.hedian.cp2.no232singlylist.SinglyList;
 
 public class SortedSinglyList<T extends Comparable<? super T>> extends SinglyList<T> {
 

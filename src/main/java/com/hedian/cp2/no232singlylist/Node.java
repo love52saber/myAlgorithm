@@ -1,4 +1,4 @@
-package com.hedian.cp2.no11singlylist;
+package com.hedian.cp2.no232singlylist;
 
 public class Node<T> {
 
