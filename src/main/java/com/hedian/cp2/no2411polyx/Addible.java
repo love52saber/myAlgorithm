@@ -1,4 +1,4 @@
-package com.hedian.cp2.no2411muticalcu;
+package com.hedian.cp2.no2411polyx;
 
 public interface Addible<T> {
 

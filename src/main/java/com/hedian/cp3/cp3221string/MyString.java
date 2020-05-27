@@ -1,6 +1,7 @@
 package com.hedian.cp3.cp3221string;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public final class MyString implements Comparable<MyString>, Serializable {
 
@@ -61,11 +62,41 @@ public final class MyString implements Comparable<MyString>, Serializable {
     }
 
     public MyString concat(MyString str) {
-        if ()
+        char[] newChars = new char[this.length() + str.length()];
+        for (int i = 0; i < this.length(); i++) {
+            newChars[i] = this.values[i];
+        }
+        for (int j = 0; j < str.length(); j++) {
+            newChars[this.length() + j] = str.values[j];
+        }
+        return new MyString(newChars);
     }
 
     @Override
-    public int compareTo(MyString myString) {
-        return 0;
+    public int compareTo(MyString str) {
+        for (int i = 0; i < this.length(); i++) {
+            if (this.values[i] != str.values[i]) {
+                return this.values[i] - str.values[i];
+            }
+        }
+        return this.values.length - str.values.length;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MyString myString = (MyString) o;
+        return Arrays.equals(values, myString.values);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(values);
+    }
+
 }

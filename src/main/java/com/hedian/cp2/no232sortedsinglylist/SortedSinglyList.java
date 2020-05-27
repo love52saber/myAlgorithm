@@ -21,17 +21,17 @@ public class SortedSinglyList<T extends Comparable<? super T>> extends SinglyLis
     //增
     @Override
     public int insert(T t) {
-        int i = 0;
         Node<T> frontNode = this.head;
         Node<T> currentNode = this.head.next;
-        while (currentNode != null) {
-            if (currentNode.data.compareTo(t) < 0) {
-                Node<T> newNode = new Node<>(currentNode, t);
-                frontNode.next = newNode;
-                i++;
-            }
+        int index = 0;
+        while (currentNode != null && currentNode.data.compareTo(t) < 0) {
+            frontNode = frontNode.next;
+            currentNode = currentNode.next;
+            index++;
         }
-        return i;
+        frontNode.next = new Node<>(currentNode, t);
+        this.size++;
+        return index;
     }
     //删
 

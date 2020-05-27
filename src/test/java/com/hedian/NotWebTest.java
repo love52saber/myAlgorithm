@@ -39,4 +39,11 @@ public class NotWebTest {
         list.add(65, 1);
         System.out.println(list);
     }
+
+    @Test
+    public void test05() {
+        String str = "1x111";
+        int i = str.indexOf('1',1);
+        System.out.println(i);
+    }
 }

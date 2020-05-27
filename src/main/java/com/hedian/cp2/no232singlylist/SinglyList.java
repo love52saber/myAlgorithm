@@ -3,10 +3,10 @@ package com.hedian.cp2.no232singlylist;
 public class SinglyList<T> {
 
     //头指针
-    protected Node<T> head;
+    public Node<T> head;
 
     //头指针
-    protected int size;
+    public int size;
 
     public SinglyList() {
         this.head = new Node<>();
