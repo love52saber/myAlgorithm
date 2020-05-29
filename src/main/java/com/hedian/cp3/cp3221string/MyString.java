@@ -16,7 +16,7 @@ public final class MyString implements Comparable<MyString>, Serializable {
     }
 
     public MyString(String str) {
-        char[] values = new char[str.length()];
+        this.values = new char[str.length()];
         for (int i = 0; i < values.length; i++) {
             values[i] = str.charAt(i);
         }
@@ -26,7 +26,7 @@ public final class MyString implements Comparable<MyString>, Serializable {
         this.values = new char[n];
         if (i >= 0 && n >= 0 && i + n <= this.values.length) {
             for (int j = 0; j < n; j++) {
-                this.values[i] = values[i + j];
+                this.values[j] = values[i + j];
             }
         } else {
             throw new StringIndexOutOfBoundsException();
@@ -98,5 +98,33 @@ public final class MyString implements Comparable<MyString>, Serializable {
     public int hashCode() {
         return Arrays.hashCode(values);
     }
+
+    public int indexofByBf(MyString str) {
+        for (int i = 0; i < this.values.length - str.length(); i++) {
+            for (int j = 0; j < str.length(); j++) {
+                if (this.values[i + j] == str.charAt(j)) {
+                    if (j == str.length() - 1) {
+                        return i;
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
+    public int indexofByKMT(MyString pattern) {
+        int[] next = this.getNextArr(pattern);
+        int pIndex = 0;
+        int qIndex = 0;
+        for (int i = 0; i < this.length()-pattern.length(); i++) {
+
+        }
+        return -1;
+    }
+
+    private int[] getNextArr(MyString pattern) {
+        return new int[2];
+    }
+
 
 }
