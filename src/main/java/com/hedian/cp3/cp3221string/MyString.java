@@ -22,7 +22,7 @@ public final class MyString implements Comparable<MyString>, Serializable {
         }
     }
 
-    public MyString(char[] values,int i, int n) {
+    public MyString(char[] values, int i, int n) {
         this.values = new char[n];
         if (i >= 0 && n >= 0 && i + n <= this.values.length) {
             for (int j = 0; j < n; j++) {
@@ -54,11 +54,11 @@ public final class MyString implements Comparable<MyString>, Serializable {
     }
 
     public MyString substring(int begin, int end) {
-        return new MyString(this.values,begin,end-begin);
+        return new MyString(this.values, begin, end - begin);
     }
 
     public MyString substring(int begin) {
-        return new MyString(this.values,begin,this.length()-begin);
+        return new MyString(this.values, begin, this.length() - begin);
     }
 
     public MyString concat(MyString str) {
@@ -114,16 +114,41 @@ public final class MyString implements Comparable<MyString>, Serializable {
 
     public int indexofByKMT(MyString pattern) {
         int[] next = this.getNextArr(pattern);
+        int patternLen = pattern.length();
         int pIndex = 0;
-        int qIndex = 0;
-        for (int i = 0; i < this.length()-pattern.length(); i++) {
-
+        for (int tIndex = 0; tIndex < this.length() - patternLen; tIndex++) {
+            while (pIndex > 0 && this.charAt(tIndex) != pattern.charAt(pIndex)) {
+                pIndex = next[pIndex];
+            }
+            if (this.charAt(tIndex) == pattern.charAt(pIndex)) {
+                pIndex++;
+            }
+            if (pIndex == patternLen) {
+                return tIndex - patternLen + 1;
+            }
         }
         return -1;
     }
 
+    /**
+     * @param pattern
+     * @return
+     */
     private int[] getNextArr(MyString pattern) {
-        return new int[2];
+        int patternLen = pattern.length();
+        int[] next = new int[patternLen];
+        //最长可匹配子串下一个字符
+        int j = 0;
+        for (int i = 2; i < patternLen; i++) {
+            while (j > 0 && pattern.charAt(j) != pattern.charAt(i - 1)) {
+                j = next[j];
+            }
+            if (pattern.charAt(j) == pattern.charAt(i - 1)) {
+                j++;
+            }
+            next[i] = j;
+        }
+        return next;
     }
 
 

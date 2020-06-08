@@ -22,4 +22,11 @@ public class MyString_test {
         int i = s1.indexofByBf(s2);
         System.out.println(i);
     }
+
+    @Test
+    public void test03() {
+        MyString s1 = new MyString("GTGTGCTGGTGTGTGCFAA");
+        int i = s1.indexofByKMT(new MyString("GTGTGCF"));
+        System.out.println(i);
+    }
 }
