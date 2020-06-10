@@ -112,11 +112,31 @@ public final class MyString implements Comparable<MyString>, Serializable {
         return -1;
     }
 
+    public int indexofByBf2(MyString pattern) {
+        int targLen = this.length();
+        int patternLen = pattern.length();
+        int tIndex = 0;
+        int pIndex = 0;
+        while (tIndex < targLen && pIndex < patternLen) {
+            if (this.charAt(tIndex) == pattern.charAt(pIndex)) {
+                if (pIndex == patternLen - 1) {
+                    return tIndex - pIndex;
+                }
+                tIndex++;
+                pIndex++;
+            } else {
+                tIndex = tIndex - pIndex + 1;
+                pIndex = 0;
+            }
+        }
+        return -1;
+    }
+
     public int indexofByKMT(MyString pattern) {
         int[] next = this.getNextArr(pattern);
         int patternLen = pattern.length();
         int pIndex = 0;
-        for (int tIndex = 0; tIndex < this.length() - patternLen; tIndex++) {
+        for (int tIndex = 0; tIndex < this.length(); tIndex++) {
             while (pIndex > 0 && this.charAt(tIndex) != pattern.charAt(pIndex)) {
                 pIndex = next[pIndex];
             }
@@ -125,6 +145,28 @@ public final class MyString implements Comparable<MyString>, Serializable {
             }
             if (pIndex == patternLen) {
                 return tIndex - patternLen + 1;
+            }
+        }
+        return -1;
+    }
+
+    public int indexofByKMT2(MyString pattern) {
+        int[] next = this.getNextArr(pattern);
+        int patternLen = pattern.length();
+        int targLen = this.length();
+        int pIndex = 0;
+        int tIndex = 0;
+        while (tIndex < targLen) {
+            if (this.charAt(tIndex) == pattern.charAt(pIndex)) {
+                if (pIndex == patternLen - 1) {
+                    return tIndex - pIndex;
+                }
+                pIndex++;
+                tIndex++;
+            } else if (pIndex == 0) {
+                tIndex++;
+            } else {
+                pIndex = next[pIndex];
             }
         }
         return -1;
@@ -148,6 +190,13 @@ public final class MyString implements Comparable<MyString>, Serializable {
             }
             next[i] = j;
         }
+        return next;
+    }
+
+    private int[] getNextArr2(MyString pattern) {
+        int patternLen = pattern.length();
+        int[] next = new int[patternLen];
+
         return next;
     }
 
