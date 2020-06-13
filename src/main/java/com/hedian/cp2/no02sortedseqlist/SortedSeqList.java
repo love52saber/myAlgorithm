@@ -48,7 +48,7 @@ public class SortedSeqList<T extends Comparable<? super T>> extends SeqList<T> {
     }
 
     //删
-    public int remove(T t) {
+    public T remove(T t) {
         return this.remove(this.search(t));
     }
 

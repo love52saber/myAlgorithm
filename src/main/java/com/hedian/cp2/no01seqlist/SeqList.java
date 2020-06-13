@@ -85,16 +85,17 @@ public class SeqList<T> {
     }
 
     //5 删
-    public int remove(int index) {
+    public T remove(int index) {
         if (index < 0 || index > this.elementNum) {
             throw new IndexOutOfBoundsException();
         }
+        T old = (T)this.elementContainer[index];
         for (int i = index; i < this.elementNum - 1; i++) {
             this.elementContainer[i] = this.elementContainer[i+1];
         }
         this.elementContainer[this.elementNum - 1] = null;
         this.elementNum -= 1;
-        return index;
+        return old;
     }
 
     //6 查询 o(n)
