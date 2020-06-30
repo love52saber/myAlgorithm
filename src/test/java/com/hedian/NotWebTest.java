@@ -1,5 +1,6 @@
 package com.hedian;
 
+import com.hedian.cp2.no232singlylist.SinglyList;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -45,5 +46,25 @@ public class NotWebTest {
         String str = "1x111";
         int i = str.indexOf('1',1);
         System.out.println(i);
+    }
+
+    @Test
+    public void test06() {
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        String remove = list.remove(1);
+        System.out.println(remove);
+    }
+
+    @Test
+    public void test07() {
+        SinglyList<String> list = new SinglyList<>();
+        list.insert("1");
+        list.insert("2");
+        String remove = list.remove(1);
+        System.out.println(remove);
+        System.out.println(list);
+        String s = list.get(0);
+        System.out.println(s);
     }
 }

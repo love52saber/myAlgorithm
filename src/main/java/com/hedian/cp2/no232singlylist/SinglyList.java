@@ -82,18 +82,19 @@ public class SinglyList<T> {
 
     //删
     public T remove(int index) {
-        if (index > this.size || index < 0) {
+        if (index >= this.size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
         Node<T> currentNode = this.head.next;
         Node<T> frontNode = this.head;
-        Node<T> backNode = this.head.next;
+        Node<T> backNode = currentNode.next;
         for (int i = 0; i < index; i++) {
             frontNode = currentNode;
             currentNode = currentNode.next;
-            backNode = currentNode.next != null ? currentNode.next : null;
+            backNode = currentNode.next;
         }
         frontNode.next = backNode;
+        size--;
         return currentNode.data;
     }
 
@@ -105,8 +106,8 @@ public class SinglyList<T> {
             if (currentNode.data.equals(t)) {
                 frontNode.next = currentNode.next;
             }
-            size--;
         }
+        size--;
         return t;
     }
 
