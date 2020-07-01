@@ -1,6 +1,7 @@
 package com.hedian;
 
 import com.hedian.cp2.no232singlylist.SinglyList;
+import com.hedian.cp4stack.cp423linkedQueue.LinkedQueue;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -66,5 +67,13 @@ public class NotWebTest {
         System.out.println(list);
         String s = list.get(0);
         System.out.println(s);
+    }
+
+    @Test
+    public void test08() {
+        LinkedQueue<Integer> queue = new LinkedQueue<>();
+        queue.enqueue(1);
+        queue.dequeue();
+        System.out.println(queue.get());
     }
 }

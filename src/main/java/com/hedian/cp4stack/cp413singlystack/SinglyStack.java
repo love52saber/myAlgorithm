@@ -31,4 +31,9 @@ public class SinglyStack<T> implements MyStack<T> {
     public T get() {
         return this.element.get(0);
     }
+
+    @Override
+    public String toString() {
+        return this.element.toString();
+    }
 }

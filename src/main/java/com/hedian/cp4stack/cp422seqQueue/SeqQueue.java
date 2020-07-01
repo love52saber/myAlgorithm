@@ -52,4 +52,9 @@ public class SeqQueue<T> implements MyQueue<T> {
         this.front = (this.front + 1) % this.elements.length;
         return temp;
     }
+
+    @Override
+    public T get() {
+        return this.elements[rear];
+    }
 }
