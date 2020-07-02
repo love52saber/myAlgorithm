@@ -73,6 +73,11 @@ public class PolyTerm implements Comparable<PolyTerm>,Addible<PolyTerm> {
     }
 
     @Override
+    public boolean addiable(PolyTerm polyTerm) {
+        return false;
+    }
+
+    @Override
     public int compareTo(PolyTerm term) {
         if (this.exp==term.exp) {
             return 0;

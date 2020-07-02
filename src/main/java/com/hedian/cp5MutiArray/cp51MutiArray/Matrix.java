@@ -35,7 +35,6 @@ public class Matrix implements MyMatrix {
         elements[i][j] = x;
     }
 
-    @Override
     public void add(Matrix mm) {
         if (this.elements.length!=mm.elements.length || this.elements[0].length!=mm.elements[0].length)
             throw new IllegalArgumentException("两个矩阵阶数不同，不能相加");

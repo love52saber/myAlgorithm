@@ -8,10 +8,10 @@ public class SeqList<T> {
     //1.构造
     public SeqList(int elementNum) {
         this.elementContainer = new Object[elementNum];
-        this.elementNum = elementNum;
+        this.elementNum = 0;
     }
     public SeqList() {
-        this(1);
+        this(8);
     }
     public SeqList(T[] elements) {
         this(elements.length);
