@@ -1,4 +1,4 @@
-package com.hedian.cp6tree.cp626tree;
+package com.hedian.cp6tree.cp626BinaryTree;
 
 public class BinaryNode<T> {
 

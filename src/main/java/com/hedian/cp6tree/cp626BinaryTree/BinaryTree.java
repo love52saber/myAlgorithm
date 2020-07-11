@@ -1,8 +1,6 @@
-package com.hedian.cp6tree.cp626tree;
+package com.hedian.cp6tree.cp626BinaryTree;
 
-import com.hedian.cp2.no232singlylist.SinglyList;
 import com.hedian.cp4stack.cp413singlystack.SinglyStack;
-import com.hedian.cp4stack.cp422seqQueue.MyQueue;
 import com.hedian.cp4stack.cp422seqQueue.SeqQueue;
 
 public class BinaryTree<T> implements MyBinaryTree<T> {

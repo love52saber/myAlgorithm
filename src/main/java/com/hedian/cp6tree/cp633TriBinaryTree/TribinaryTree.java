@@ -1,7 +1,7 @@
 package com.hedian.cp6tree.cp633TriBinaryTree;
 
-import com.hedian.cp6tree.cp626tree.BinaryNode;
-import com.hedian.cp6tree.cp626tree.MyBinaryTree;
+import com.hedian.cp6tree.cp626BinaryTree.BinaryNode;
+import com.hedian.cp6tree.cp626BinaryTree.MyBinaryTree;
 
 public class TribinaryTree<T> implements MyBinaryTree<T> {
 
