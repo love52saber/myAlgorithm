@@ -8,6 +8,12 @@ public class BinaryNode<T> {
 
     public BinaryNode<T> right;
 
+    public BinaryNode() {
+        this.data = null;
+        this.left = null;
+        this.right = null;
+    }
+
     public BinaryNode(T data) {
         this.data = data;
         this.left = null;

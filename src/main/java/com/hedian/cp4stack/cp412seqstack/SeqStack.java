@@ -6,26 +6,33 @@ import com.hedian.cp2.no01seqlist.SeqList;
  * @author gjyang
  */
 public class SeqStack<T> implements MyStack<T>{
-    
-    private SeqList<T> element;
-    
+
+    private SeqList<T> elements;
+
+    public SeqStack() {
+    }
+
+    public SeqStack(int size) {
+        elements = new SeqList<>(64);
+    }
+
     @Override
     public boolean isEmpty() {
-        return this.element.isEmpty();
+        return elements.size() == 0;
     }
 
     @Override
     public void push(T x) {
-        this.element.insert(x);
+        this.elements.insert(x);
     }
 
     @Override
     public T pop() {
-        return this.element.remove(element.size()-1);
+        return elements.remove(elements.size() - 1);
     }
 
     @Override
     public T get() {
-        return this.element.get(this.element.size()-1);
+        return elements.get(elements.size());
     }
 }

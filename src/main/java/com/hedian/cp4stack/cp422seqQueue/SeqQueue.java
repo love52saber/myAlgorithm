@@ -1,13 +1,11 @@
 package com.hedian.cp4stack.cp422seqQueue;
 
-import com.hedian.cp2.no01seqlist.SeqList;
-import org.omg.CORBA.Object;
-
 public class SeqQueue<T> implements MyQueue<T> {
 
-    private T[] elements;
+    //只能使用数组
+    private Object[] elements;
 
-    private int front;
+    private int head;
 
     private int rear;
 
@@ -15,46 +13,42 @@ public class SeqQueue<T> implements MyQueue<T> {
         this(64);
     }
 
-    public SeqQueue(int size) {
-        this.elements = (T[]) new Object[size];
-        front = 0;
+    public <T> SeqQueue(int size) {
+        elements = new Object[size];
+        head = 0;
         rear = 0;
     }
 
     @Override
     public boolean isEmpty() {
-        return front==rear;
+        return head == rear;
     }
 
     @Override
     public void enqueue(T x) {
-        if (front == (rear + 1) % this.elements.length) {
+        if (head == (this.rear + 1) % this.elements.length) {
             //扩容
-            T[] newElements = (T[]) new Object[this.elements.length];
             int j = 0;
-            for (int i = front; i != this.rear; i = (i+1)%this.elements.length,j++) {
-                newElements[j] = this.elements[i];
+            Object[] newContainer = new Object[this.elements.length * 2];
+            for (int i = this.head; i != this.rear ; i = (i + 1)%this.elements.length, j++) {
+                newContainer[j] = this.elements[i];
             }
-            front = 0;
-            rear = j;
-            this.elements = newElements;
+            this.head = 0;
+            this.rear = j;
         }
-        this.elements[rear+1] = x;
-        rear = (rear + 1) % this.elements.length;
+        rear = (rear + 1)%this.elements.length;
+        this.elements[rear] = x;
     }
 
     @Override
     public T dequeue() {
-        if (this.isEmpty()) {
-            return null;
-        }
-        T temp = this.elements[this.front];
-        this.front = (this.front + 1) % this.elements.length;
-        return temp;
+        T headElement = (T) elements[head];
+        head = (head + 1) % this.elements.length;
+        return headElement;
     }
 
     @Override
     public T get() {
-        return this.elements[rear];
+        return (T) elements[head];
     }
 }

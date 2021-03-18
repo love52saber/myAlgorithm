@@ -1,14 +1,16 @@
-package com.hedian.cp6tree.cp626BinaryTree;
+package com.hedian.cp6tree.cpextraBSTTress;
 
 import com.hedian.cp2.no01seqlist.SeqList;
 import com.hedian.cp4stack.cp412seqstack.MyStack;
 import com.hedian.cp4stack.cp412seqstack.SeqStack;
+import com.hedian.cp6tree.cp626BinaryTree.BinaryNode;
+import com.hedian.cp6tree.cp626BinaryTree.MyBinaryTree;
 
-public class BinaryTree<T> implements MyBinaryTree<T> {
+public class BSTBinaryTree<T extends Comparable<T>> implements MyBinaryTree<T> {
 
-    protected BinaryNode<T> root;
+    protected BSTTreeNode<T> root;
 
-    public BinaryTree() {
+    public BSTBinaryTree() {
     }
 
     /**
@@ -16,18 +18,18 @@ public class BinaryTree<T> implements MyBinaryTree<T> {
      * @param prelist
      * @param inlist
      */
-    public BinaryTree(SeqList<T> prelist, SeqList<T> inlist) {
+    public BSTBinaryTree(SeqList<T> prelist, SeqList<T> inlist) {
         this.root = createTreeByPreAndIn(prelist, inlist, 0, 0, prelist.size());
     }
 
-    private BinaryNode<T> createTreeByPreAndIn(SeqList<T> prelist, SeqList<T> inlist, int preStart, int inStart, int n) {
-        BinaryNode<T> root = null;
+    private BSTTreeNode<T> createTreeByPreAndIn(SeqList<T> prelist, SeqList<T> inlist, int preStart, int inStart, int n) {
+        BSTTreeNode<T> root = null;
         if (n == 0) {
             return root;
         } else {
             int i = 0;
             T rootNodeData = prelist.get(preStart);
-            BinaryNode<T> rootNode = new BinaryNode<>(rootNodeData);
+            BSTTreeNode<T> rootNode = new BSTTreeNode<>(rootNodeData);
             while (i<n && !rootNodeData.equals(inlist.get(inStart + i))) {
                 i++;
             }
@@ -39,12 +41,12 @@ public class BinaryTree<T> implements MyBinaryTree<T> {
     }
 
     public static void main(String[] args) {
-        SeqList<String> prelist = new SeqList<>(new String[]{"A","B","D","E","C","F"});
-        SeqList<String> inlist = new SeqList<>(new String[]{"D","B","E","A","F","C"});
-        BinaryTree<String> tree = new BinaryTree<String>(prelist, inlist);
+        SeqList<Integer> prelist = new SeqList<>(new Integer[]{ 5, 3, 1, 4, 7, 6 });
+        SeqList<Integer> inlist = new SeqList<>(new Integer[]{1, 3, 4, 5, 6, 7});
+        BSTBinaryTree<Integer> tree = new BSTBinaryTree<Integer>(prelist, inlist);
         System.out.println("111");
         System.out.println(tree.count());
-        BinaryNode<String> e = tree.searchNode("E");
+        BSTTreeNode<Integer> e = tree.searchNode(5);
         System.out.println("111");
     }
 
@@ -52,16 +54,16 @@ public class BinaryTree<T> implements MyBinaryTree<T> {
      * 带空的先序遍历
      * @param prelist
      */
-    public BinaryTree(SeqList<T> prelist) {
+    public BSTBinaryTree(SeqList<T> prelist) {
         this.root = this.createTreeByInList(prelist, 0);
     }
 
-    private BinaryNode<T> createTreeByInList(SeqList<T> prelist, int i) {
-        BinaryNode<T> binaryNode = null;
+    private BSTTreeNode<T> createTreeByInList(SeqList<T> prelist, int i) {
+        BSTTreeNode<T> binaryNode = null;
         T t1 = prelist.get(i);
         i++;
         if (t1 != null) {
-            binaryNode = new BinaryNode<>(t1);
+            binaryNode = new BSTTreeNode<>(t1);
             binaryNode.left = createTreeByInList(prelist, i);
             binaryNode.right = createTreeByInList(prelist, i);
         }
@@ -79,7 +81,7 @@ public class BinaryTree<T> implements MyBinaryTree<T> {
         preOrder(root);
     }
 
-    private void preOrder(BinaryNode<T> p) {
+    private void preOrder(BSTTreeNode<T> p) {
         while (p != null) {
             System.out.println(p.data);
             preOrder(p.left);
@@ -99,10 +101,10 @@ public class BinaryTree<T> implements MyBinaryTree<T> {
 
     @Override
     public void levelOrder() {
-        MyStack<BinaryNode> stack = new SeqStack<>();
+        MyStack<BSTTreeNode> stack = new SeqStack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
-            BinaryNode pop = stack.pop();
+            BSTTreeNode pop = stack.pop();
             System.out.println(pop);
             stack.push(pop.left);
             stack.push(pop.right);
@@ -115,7 +117,7 @@ public class BinaryTree<T> implements MyBinaryTree<T> {
         return this.count(root);
     }
 
-    private int count(BinaryNode<T> primaryNode) {
+    private int count(BSTTreeNode<T> primaryNode) {
         if (primaryNode == null) {
             return 0;
         } else {
@@ -134,25 +136,25 @@ public class BinaryTree<T> implements MyBinaryTree<T> {
     }
 
     @Override
-    public BinaryNode<T> searchNode(T key) {
+    public BSTTreeNode<T> searchNode(T key) {
         return this.searchNode(root, key);
     }
 
-    private BinaryNode<T> searchNode(BinaryNode<T> primaryNode, T key) {
+    @Override
+    public BinaryNode<T> getParent(BinaryNode<T> node) {
+        return null;
+    }
+
+    private BSTTreeNode<T> searchNode(BSTTreeNode<T> primaryNode, T key) {
         if (primaryNode == null) {
             return null;
         }
         if (primaryNode.data == key) {
             return primaryNode;
         }
-        BinaryNode<T> p = searchNode(primaryNode.left, key);
-        BinaryNode<T> q = searchNode(primaryNode.right, key);
+        BSTTreeNode<T> p = searchNode(primaryNode.left, key);
+        BSTTreeNode<T> q = searchNode(primaryNode.right, key);
         return p != null ? p : (q != null ? q : null);
-    }
-
-    @Override
-    public BinaryNode<T> getParent(BinaryNode<T> node) {
-        return null;
     }
 
     @Override
@@ -169,7 +171,6 @@ public class BinaryTree<T> implements MyBinaryTree<T> {
     public void removeChild(BinaryNode<T> p, boolean leftChild) {
 
     }
-
     @Override
     public void removeAll() {
 

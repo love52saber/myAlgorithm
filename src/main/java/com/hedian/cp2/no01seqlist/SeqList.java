@@ -17,6 +17,7 @@ public class SeqList<T> {
         this(elements.length);
         for (int i = 0; i < elements.length; i++) {
             this.elementContainer[i] = elements[i];
+            elementNum++;
         }
     }
 

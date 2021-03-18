@@ -1,33 +1,29 @@
 package com.hedian.cp4stack.cp425priorityQueue;
 
+import com.hedian.cp2.no232singlylist.Node;
 import com.hedian.cp2.no232sortedsinglylist.SortedSinglyList;
 import com.hedian.cp4stack.cp422seqQueue.MyQueue;
+import com.hedian.cp4stack.cp423linkedQueue.LinkedQueue;
 
-public class PriorityQueue<T extends Comparable<? super T>> implements MyQueue<T> {
-
-    private SortedSinglyList<T> list;
-
-    public PriorityQueue(SortedSinglyList<T> list) {
-        this.list = list;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return list.size()==0;
-    }
+public class PriorityQueue<T extends Comparable<? super T>> extends LinkedQueue<T> {
 
     @Override
     public void enqueue(T x) {
-        list.insert(x);
+        Node<T> currentNode = head.next;
+        Node<T> frontNode = head;
+        while (currentNode != null && currentNode.data.compareTo(x) < 0) {
+            currentNode = currentNode.next;
+            frontNode = frontNode.next;
+        }
+        frontNode.next = new Node<>(currentNode, x);
     }
 
-    @Override
-    public T dequeue() {
-        return list.remove(0);
-    }
 
-    @Override
-    public T get() {
-        return list.get(0);
+    public static void main(String[] args) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        queue.enqueue(1);
+        queue.enqueue(4);
+        queue.enqueue(3);
+        System.out.println(queue);
     }
 }

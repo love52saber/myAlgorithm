@@ -56,6 +56,11 @@ public class TribinaryTree<T> implements MyBinaryTree<T> {
     }
 
     @Override
+    public BinaryNode<T> searchNode(T key) {
+        return null;
+    }
+
+    @Override
     public BinaryNode<T> getParent(BinaryNode<T> node) {
         return null;
     }

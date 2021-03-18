@@ -10,7 +10,7 @@ public interface MyBinaryTree<T> {
     int count();                                           //返回二叉树的结点个数
     int height();                                          //返回二叉树的高度
     T search(T key);                                       //查找并返回首次出现的关键字为key元素
-    //    BinaryNode<T> searchNode(T key);                       //查找并返回首次出现的关键字为key元素结点
+    BinaryNode<T> searchNode(T key);                       //查找并返回首次出现的关键字为key元素结点
     BinaryNode<T> getParent(BinaryNode<T> node);           //返回node的父母结点
     void insertRoot(T x);                                  //插入元素x作为根结点
     BinaryNode<T> insertChild(BinaryNode<T> p, T x, boolean leftChild); //插入x元素作为p结点的左/右孩子

@@ -3,57 +3,52 @@ package com.hedian.cp4stack.cp423linkedQueue;
 import com.hedian.cp2.no232singlylist.Node;
 import com.hedian.cp4stack.cp422seqQueue.MyQueue;
 
+import java.util.LinkedList;
+
 public class LinkedQueue<T> implements MyQueue<T> {
 
-    private Node<T> front;
+    protected Node<T> head;
 
-    private Node<T> rear;
+    protected Node<T> rear;
 
     public LinkedQueue() {
-        this.front = null;
-        this.rear = this.front;
+        head = new Node<>();
+        rear = head;
     }
+
 
     @Override
     public boolean isEmpty() {
-        return front == null && rear == null;
+        return head == rear;
     }
 
     @Override
     public void enqueue(T x) {
-        Node<T> newRear = new Node<T>(null, x);
-        if (front == null) {
-            this.front = newRear;
-        } else {
-            this.rear.next = newRear;
-        }
-        this.rear = newRear;
+//        Node<T> tmp = rear;
+//        tmp.next = new Node<>(null, x);
+        rear.next = new Node<>(null, x);
+        rear = rear.next;
     }
 
     @Override
     public T dequeue() {
-        if (this.isEmpty()) {
-            throw new IndexOutOfBoundsException("队列为空");
-        }
-        Node<T> dequeuedNode = this.front;
-        this.front = this.front.next;
-        return dequeuedNode.data;
+        T data = head.next.data;
+        head = head.next.next;
+        return data;
     }
 
     @Override
     public T get() {
-        return this.front == null ? null : this.front.data;
+        return head.data;
     }
 
-    @Override
-    public String toString()                     //返回队列所有元素的描述字符串，形式为“(,)”
-    {                                            //算法同不带头结点的单链表
-        String str = "(";
-        for (Node<T> p = this.front; p != null; p = p.next) {
-            str += p.data.toString();
-            if (p.next != null)
-                str += ", ";                               //不是最后一个结点时后加分隔符
-        }
-        return str + ")";                                    //空表返回()
+    public static void main(String[] args) {
+        LinkedQueue<String> queue = new LinkedQueue<>();
+        queue.enqueue("1");
+        queue.enqueue("2");
+        System.out.println(queue);
+        String str = queue.dequeue();
+        System.out.println(queue);
+        System.out.println(str);
     }
 }
